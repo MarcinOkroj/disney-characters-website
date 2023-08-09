@@ -1,0 +1,24 @@
+img {
+  height: 20px;
+}
+.footer {
+  display: flex;
+  justify-content: space-around;
+
+  &__message {
+    align-items: center;
+    display: flex;
+    text-align: center;
+  }
+
+  &__github {
+    padding: 10px 0 10px 0;
+    text-align: center;
+  }
+
+  &__date {
+    align-items: center;
+    display: flex;
+    text-align: center;
+  }
+}
