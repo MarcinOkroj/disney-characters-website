@@ -1,0 +1,39 @@
+@import "../../styles/variables.scss";
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+
+  .char-table {
+    width: 50vw;
+
+    &__picture--img {
+      border-radius: 50%;
+      height: 12vw;
+      max-height: 140px;
+      max-width: 140px;
+      padding: 5px;
+      width: 12vw;
+    }
+
+    &__fav--icon {
+      font-size: 30px;
+    }
+
+    .fa-solid.fa-star {
+      color: $star-yellow;
+    }
+
+    .fa-star:hover {
+      cursor: pointer;
+    }
+
+    th {
+      font-size: 1.25em;
+    }
+    td {
+      font-size: 1.2em;
+    }
+  }
+}
