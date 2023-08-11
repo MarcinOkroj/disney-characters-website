@@ -1,0 +1,30 @@
+<div class="tile-wrapper">
+  <div class="tile-bg-img__container">
+    <img
+      class="tile-bg-img__inner"
+      src="{{ displayChar.imageUrl }}"
+      alt="character image"
+    />
+  </div>
+  <div class="tile-info">
+    <div class="tile-info__upper-row">
+      <div class="tile-info__upper-row--name">
+        {{ displayChar.name }}
+        <i
+          *ngIf="displayChar.tvShows.length"
+          class="fa-solid fa-tv"
+          matTooltip="{{ tooltipText(displayChar) }}"
+          matTooltipPosition="above"
+        ></i>
+      </div>
+    </div>
+    <div class="tile-info__lower-row">
+      <div class="tile-info__lower-row--films">
+        Films: {{ displayChar.films.length }}
+      </div>
+      <div class="tile-info__lower-row--tvshows">
+        Tv Shows: {{ displayChar.tvShows.length }}
+      </div>
+    </div>
+  </div>
+</div>
