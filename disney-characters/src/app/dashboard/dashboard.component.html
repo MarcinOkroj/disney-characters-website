@@ -9,15 +9,17 @@
     </div>
   </div>
 
-    <!-- Search Section -->
+  <!-- Search Section -->
   <div class="search-section">
-    <div class="search-section__left">
-        <app-tile *ngIf="searchFlag" [displayChar]="searchedChar"> </app-tile>
+    <div class="search-section__left-side">
+      <app-tile *ngIf="searchFlag" [displayChar]="searchedChar"> </app-tile>
     </div>
-    <div class="search-section__right">
-      <div class="search-section__right--text">Search For A Character</div>
-      <div class="search-section__right--sub-text">Please eneter a valid names, otherwise API might go down for a while</div>
-      <div class="search-section__right--input">
+    <div class="search-section__right-side">
+      <div class="search-section__text">Search For A Character</div>
+      <div class="search-section__sub-text">
+        Please eneter a valid name, otherwise API might go down for a while
+      </div>
+      <div class="search-section__input">
         <mat-form-field>
           <mat-label>Search Character...</mat-label>
           <input
@@ -31,6 +33,7 @@
       </div>
     </div>
   </div>
+
   <!-- Table -->
   <div class="char-table">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -40,10 +43,10 @@
         <td
           mat-cell
           *matCellDef="let element"
-          class="char-table__picture--cell"
+          class="char-table__picture-cell"
         >
           <img
-            class="char-table__picture--img"
+            class="char-table__picture-img"
             src="{{ element.imageUrl }}"
             alt="characters picture"
           />
@@ -76,14 +79,14 @@
         <th mat-header-cell *matHeaderCellDef>Favourites</th>
         <td mat-cell *matCellDef="let element">
           <i
-            *ngIf="inLocalStorage(element._id)"
-            class="fa-solid fa-star char-table__fav--icon"
-            (click)="onFavClick($event, element)"
+            *ngIf="favService.inLocalStorage(element._id)"
+            class="fa-solid fa-star char-table__fav-icon"
+            (click)="favService.onFavClick($event, element)"
           ></i>
           <i
-            *ngIf="!inLocalStorage(element._id)"
-            class="fa-regular fa-star char-table__fav--icon"
-            (click)="onFavClick($event, element)"
+            *ngIf="!favService.inLocalStorage(element._id)"
+            class="fa-regular fa-star char-table__fav-icon"
+            (click)="favService.onFavClick($event, element)"
           ></i>
         </td>
       </ng-container>

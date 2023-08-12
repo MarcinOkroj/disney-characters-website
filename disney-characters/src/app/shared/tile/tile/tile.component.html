@@ -7,8 +7,8 @@
     />
   </div>
   <div class="tile-info">
-    <div class="tile-info__upper-row">
-      <div class="tile-info__upper-row--name">
+    <div class="upper-row">
+      <div class="upper-row__name">
         {{ displayChar.name }}
         <i
           *ngIf="displayChar.tvShows.length"
@@ -17,12 +17,24 @@
           matTooltipPosition="above"
         ></i>
       </div>
+      <div class="upper-row__fav">
+        <i
+          *ngIf="favService.inLocalStorage(displayChar._id)"
+          class="fa-solid fa-star"
+          (click)="favService.onFavClick($event, displayChar)"
+        ></i>
+        <i
+          *ngIf="!favService.inLocalStorage(displayChar._id)"
+          class="fa-regular fa-star"
+          (click)="favService.onFavClick($event, displayChar)"
+        ></i>
+      </div>
     </div>
-    <div class="tile-info__lower-row">
-      <div class="tile-info__lower-row--films">
+    <div class="lower-row">
+      <div class="lower-row__films">
         Films: {{ displayChar.films.length }}
       </div>
-      <div class="tile-info__lower-row--tvshows">
+      <div class="lower-row__tvshows">
         Tv Shows: {{ displayChar.tvShows.length }}
       </div>
     </div>

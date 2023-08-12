@@ -1,27 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ToastrService } from 'ngx-toastr';
 import { CharacterInterface } from '../shared/interfaces/character.interface';
+import { FavService } from '../shared/services/fav.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
+  providers: [FavService]
 })
 export class DashboardComponent implements OnInit {
   favArr: any[] = [];
   charsArr: CharacterInterface[] = [];
   displayedColumns: string[] = ['img', 'name', 'films', 'favourite'];
   dataSource: any;
-  pageSize = 50;
+  pageSize = 100;
   id: number = 0;
   bestChars: any[] = [];
   filter: any;
   searchtimer: any;
   searchedChar: any;
   searchFlag: boolean = false;
-  constructor(private http: HttpClient, private toastr: ToastrService) {}
+  constructor(private http: HttpClient, public favService: FavService) {}
 
   ngOnInit() {
     if (localStorage['favChars'] === undefined)
@@ -47,49 +48,6 @@ export class DashboardComponent implements OnInit {
     this.filter3BestChars(3);
   }
 
-  onFavClick(event: any, char: CharacterInterface) {
-    if (event.target.classList.contains('fa-regular')) {
-      //on add click
-      this.addFav(event, char._id, char.name);
-    } else if (event.target.classList.contains('fa-solid')) {
-      //on remove click
-      this.removeFav(event, char._id, char.name);
-    }
-  }
-
-  addFav(event: any, charId: number, charName: string) {
-    event.target.classList.remove('fa-regular');
-    event.target.classList.add('fa-solid');
-    event.target.style.color = 'yellow';
-    if (!this.inLocalStorage(charId)) {
-      this.favArr.push(charId);
-      this.addLocalStorage(this.favArr);
-      this.toastr.success('has been added to favourites', charName);
-    }
-  }
-
-  removeFav(event: any, charId: number, charName: string) {
-    event.target.classList.remove('fa-solid');
-    event.target.classList.add('fa-regular');
-    event.target.style.color = 'black';
-    if (this.inLocalStorage(charId)) {
-      this.favArr.splice(this.favArr.indexOf(charId), 1);
-      this.addLocalStorage(this.favArr);
-      this.toastr.warning('has been removed from favourites', charName);
-    }
-  }
-
-  inLocalStorage(elem: number) {
-    if (JSON.parse(localStorage['favChars']) !== 0) {
-      this.favArr = JSON.parse(localStorage['favChars']);
-      if (this.favArr.includes(elem)) return true;
-    }
-    return false;
-  }
-
-  addLocalStorage(favChars: string[]) {
-    localStorage.setItem('favChars', JSON.stringify(favChars));
-  }
   tooltipText(elem: any) {
     return elem.tvShows.join(', ');
   }

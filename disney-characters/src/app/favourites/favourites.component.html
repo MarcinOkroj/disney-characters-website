@@ -11,10 +11,10 @@
         <td
           mat-cell
           *matCellDef="let element"
-          class="char-table__picture--cell"
+          class="char-table__picture-cell"
         >
           <img
-            class="char-table__picture--img"
+            class="char-table__picture-img"
             src="{{ element.imageUrl }}"
             alt="characters picture"
           />
@@ -22,7 +22,7 @@
       </ng-container>
 
       <!-- Name Column -->
-      <ng-container matColumnDef="name" class="char-table__name--header">
+      <ng-container matColumnDef="name" class="char-table__name-header">
         <th mat-header-cell *matHeaderCellDef>
           <mat-form-field appearance="outline">
             <mat-label>Name</mat-label>
@@ -58,14 +58,14 @@
         <th mat-header-cell *matHeaderCellDef>Favourites</th>
         <td mat-cell *matCellDef="let element">
           <i
-            *ngIf="inLocalStorage(element._id)"
-            class="fa-solid fa-star char-table__fav--icon"
-            (click)="onFavClick($event, element)"
+            *ngIf="favService.inLocalStorage(element._id)"
+            class="fa-solid fa-star char-table__fav-icon"
+            (click)="favService.onFavClick($event, element)"
           ></i>
           <i
-            *ngIf="!inLocalStorage(element._id)"
-            class="fa-regular fa-star char-table__fav--icon"
-            (click)="onFavClick($event, element)"
+            *ngIf="!favService.inLocalStorage(element._id)"
+            class="fa-regular fa-star char-table__fav-icon"
+            (click)="favService.onFavClick($event, element)"
           ></i>
         </td>
       </ng-container>
