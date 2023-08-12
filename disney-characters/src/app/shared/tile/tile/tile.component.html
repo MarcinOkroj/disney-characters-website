@@ -1,0 +1,42 @@
+<div class="tile-wrapper">
+  <div class="tile-bg-img__container">
+    <img
+      class="tile-bg-img__inner"
+      src="{{ displayChar.imageUrl }}"
+      alt="character image"
+    />
+  </div>
+  <div class="tile-info">
+    <div class="upper-row">
+      <div class="upper-row__name">
+        {{ displayChar.name }}
+        <i
+          *ngIf="displayChar.tvShows.length"
+          class="fa-solid fa-tv"
+          matTooltip="{{ tooltipText(displayChar) }}"
+          matTooltipPosition="above"
+        ></i>
+      </div>
+      <div class="upper-row__fav">
+        <i
+          *ngIf="favService.inLocalStorage(displayChar._id)"
+          class="fa-solid fa-star"
+          (click)="favService.onFavClick($event, displayChar)"
+        ></i>
+        <i
+          *ngIf="!favService.inLocalStorage(displayChar._id)"
+          class="fa-regular fa-star"
+          (click)="favService.onFavClick($event, displayChar)"
+        ></i>
+      </div>
+    </div>
+    <div class="lower-row">
+      <div class="lower-row__films">
+        Films: {{ displayChar.films.length }}
+      </div>
+      <div class="lower-row__tvshows">
+        Tv Shows: {{ displayChar.tvShows.length }}
+      </div>
+    </div>
+  </div>
+</div>

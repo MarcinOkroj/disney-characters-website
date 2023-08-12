@@ -1,0 +1,62 @@
+@import "../../../../styles/variables.scss";
+
+.tile-wrapper {
+  border-color: $lightGray;
+  border-style: solid;
+  box-shadow: 1px 8px 7px 1px rgba($mediumGray, 0.2);
+  border-radius: 12px;
+  border-width: 2px;
+  height: 300px;
+  margin: 30px 25px 40px;
+  width: 240px;
+}
+
+.tile-bg-img__inner {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: block;
+  height: 160px;
+  min-height: 190px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.tile-bg-img {
+  height: 190px;
+  width: 100%;
+}
+
+.tile-info {
+  display: flex;
+  flex-direction: column;
+  height: 110px;
+  justify-content: space-between;
+  padding: 0.5em 1em;
+
+  .upper-row {
+    display: flex;
+    justify-content: space-between;
+    &__name {
+      font-size: 1.25em;
+      padding-top: 0.5em;
+    }
+
+    &__fav {
+      font-size: 1.25em;
+      padding-top: 0.5em;
+    }
+    .fa-solid.fa-star {
+      color: $star-yellow;
+    }
+
+    .fa-star:hover {
+      cursor: pointer;
+    }
+  }
+
+  .lower-row {
+    &__tvshows {
+      padding-bottom: 1em;
+    }
+  }
+}

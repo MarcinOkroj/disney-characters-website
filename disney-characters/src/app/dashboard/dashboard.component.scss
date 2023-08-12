@@ -1,0 +1,89 @@
+@import "../../styles/variables.scss";
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  min-height: calc(100vh - 261px);
+
+  .tiles-wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+      color: $veryDarkGray;
+      font-size: 3em;
+    }
+
+    &__tiles {
+      display: flex;
+    }
+  }
+
+  .search-section {
+    display: flex;
+    justify-content: space-between;
+    height: 300px;
+    margin-bottom: 30px;
+    width: 50vw;
+
+    &__left-side {
+      margin: -30px 0 -40px -25px;
+      min-width: 240px;
+      width: 240px;
+    }
+    &__right-side {
+      background-color: $veryDarkGray;
+      border-radius: 10px;
+      color: $bg-color;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 2;
+      justify-content: space-between;
+      margin-left: 40px;
+      padding: 40px 65px;
+      width: auto;
+    }
+    &__text {
+      font-size: 2.5em;
+      line-height: 125%;
+    }
+    &__sub-text {
+      font-size: 0.75em;
+    }
+  }
+
+  .char-table {
+    width: 50vw;
+
+    &__picture-img {
+      border-radius: 50%;
+      height: 12vw;
+      max-height: 140px;
+      max-width: 140px;
+      padding: 5px;
+      width: 12vw;
+    }
+
+    &__fav-icon {
+      font-size: 30px;
+    }
+
+    .fa-solid.fa-star {
+      color: $star-yellow;
+    }
+
+    .fa-star:hover {
+      cursor: pointer;
+    }
+
+    th {
+      font-size: 1.3em;
+    }
+    td {
+      font-size: 1.25em;
+    }
+  }
+}
