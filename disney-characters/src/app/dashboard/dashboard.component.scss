@@ -29,12 +29,12 @@
     margin-bottom: 30px;
     width: 50vw;
 
-    &__left {
+    &__left-side {
       margin: -30px 0 -40px -25px;
       min-width: 240px;
       width: 240px;
     }
-    &__right {
+    &__right-side {
       background-color: $veryDarkGray;
       border-radius: 10px;
       color: $bg-color;
@@ -45,21 +45,20 @@
       margin-left: 40px;
       padding: 40px 65px;
       width: auto;
-
-      &--text {
-        font-size: 2.5em;
-        line-height: 125%;
-      }
-      &--sub-text {
-        font-size: 0.75em;
-      }
+    }
+    &__text {
+      font-size: 2.5em;
+      line-height: 125%;
+    }
+    &__sub-text {
+      font-size: 0.75em;
     }
   }
 
   .char-table {
     width: 50vw;
 
-    &__picture--img {
+    &__picture-img {
       border-radius: 50%;
       height: 12vw;
       max-height: 140px;
@@ -68,7 +67,7 @@
       width: 12vw;
     }
 
-    &__fav--icon {
+    &__fav-icon {
       font-size: 30px;
     }
 
