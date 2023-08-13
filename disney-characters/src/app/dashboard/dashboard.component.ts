@@ -1,14 +1,14 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { CharacterInterface } from '../shared/interfaces/character.interface';
 import { FavService } from '../shared/services/fav.service';
+import { ApiService } from '../shared/services/api.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  providers: [FavService]
+  providers: [FavService],
 })
 export class DashboardComponent implements OnInit {
   favArr: any[] = [];
@@ -22,7 +22,10 @@ export class DashboardComponent implements OnInit {
   searchtimer: any;
   searchedChar: any;
   searchFlag: boolean = false;
-  constructor(private http: HttpClient, public favService: FavService) {}
+  constructor(
+    public favService: FavService,
+    public apiService: ApiService
+  ) {}
 
   ngOnInit() {
     if (localStorage['favChars'] === undefined)
@@ -31,11 +34,9 @@ export class DashboardComponent implements OnInit {
   }
 
   private getCharacters() {
-    this.http
-      .get(`https://api.disneyapi.dev/character?pageSize=${this.pageSize}`)
-      .subscribe((chars) => {
-        this.displayChars(chars);
-      });
+    this.apiService.getCharacters(this.pageSize).subscribe((chars) => {
+      this.displayChars(chars);
+    });
   }
 
   private displayChars(chars: any) {
@@ -64,12 +65,8 @@ export class DashboardComponent implements OnInit {
     clearTimeout(this.searchtimer);
     this.searchFlag = false;
     this.searchtimer = setTimeout(() => {
-      this.http
-        .get(
-          `https://api.disneyapi.dev/character?name=${event.target.value
-            .trim()
-            .replace(' ', '%20')}`
-        )
+      this.apiService
+        .getCharacterByName(event.target.value)
         .subscribe((char) => {
           this.checkName(event, char);
         });

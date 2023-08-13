@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { CharacterInterface } from '../shared/interfaces/character.interface';
 import { FavService } from '../shared/services/fav.service';
+import { ApiService } from '../shared/services/api.service';
 
 @Component({
   selector: 'app-favourites',
@@ -20,10 +20,7 @@ export class FavouritesComponent {
   filter: any;
   filteredCharsArr: CharacterInterface[] = [];
 
-  constructor(
-    private http: HttpClient,
-    public favService: FavService
-  ) {}
+  constructor(public favService: FavService, public apiService: ApiService) {}
 
   ngOnInit() {
     if (localStorage['favChars'] === undefined)
@@ -32,12 +29,10 @@ export class FavouritesComponent {
   }
 
   private getCharacter(charId: number) {
-    this.http
-      .get(`https://api.disneyapi.dev/character/${charId}`)
-      .subscribe((char) => {
-        this.fillFavCharArr(char);
-        this.dataSource = new MatTableDataSource(this.favCharsArr);
-      });
+    this.apiService.getCharacterById(charId).subscribe((char) => {
+      this.fillFavCharArr(char);
+      this.dataSource = new MatTableDataSource(this.favCharsArr);
+    });
   }
 
   private fillFavCharArr(char: any) {
@@ -45,6 +40,7 @@ export class FavouritesComponent {
   }
 
   private displayChar() {
+    this.favCharsArr = [];
     this.favArr = JSON.parse(localStorage['favChars']);
     this.favArr.forEach((id: number) => {
       this.getCharacter(id);
@@ -64,5 +60,10 @@ export class FavouritesComponent {
 
   private displayFiltered(arr: any[]) {
     this.dataSource = new MatTableDataSource(arr);
+  }
+
+  public onFavClick(event: Event, element: any) {
+    this.favService.onFavClick(event, element);
+    this.displayChar();
   }
 }
