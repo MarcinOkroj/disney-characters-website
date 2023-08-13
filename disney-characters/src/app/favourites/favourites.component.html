@@ -60,12 +60,12 @@
           <i
             *ngIf="favService.inLocalStorage(element._id)"
             class="fa-solid fa-star char-table__fav-icon"
-            (click)="favService.onFavClick($event, element)"
+            (click)="onFavClick($event, element)"
           ></i>
           <i
             *ngIf="!favService.inLocalStorage(element._id)"
             class="fa-regular fa-star char-table__fav-icon"
-            (click)="favService.onFavClick($event, element)"
+            (click)="onFavClick($event, element)"
           ></i>
         </td>
       </ng-container>
